@@ -12,7 +12,7 @@
         <dependency>
             <groupId>com.nutrymaco</groupId>
             <artifactId>orm</artifactId>
-            <version>1.0.7</version>
+            <version>1.0.8</version>
         </dependency>
     </dependencies>
 

@@ -2,11 +2,13 @@ package com.nutrymaco.project;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nutrymaco.orm.migration.TableSynchronizationStrategy;
 import com.nutrymaco.orm.query.Query;
 import com.nutrymaco.project.records.MovieRecord;
 import com.nutrymaco.project.repository.MovieRepository;
 
 import java.util.List;
+import java.util.ServiceLoader;
 
 
 public class Main {
