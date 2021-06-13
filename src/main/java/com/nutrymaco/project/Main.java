@@ -2,17 +2,36 @@ package com.nutrymaco.project;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nutrymaco.orm.migration.TableSynchronizationStrategy;
-import com.nutrymaco.orm.query.Query;
+import com.nutrymaco.orm.query.generation.RepositoryProvider;
 import com.nutrymaco.project.records.MovieRecord;
 import com.nutrymaco.project.repository.MovieRepository;
 
 import java.util.List;
-import java.util.ServiceLoader;
 
 
 public class Main {
-    private static final ObjectMapper mapper = new ObjectMapper();
+    public static void main(String[] args) {
+        MovieRepository repository = RepositoryProvider.from(MovieRepository.class);
+
+        repository.getByYear(2018).stream()
+                .map(movie -> "Название : " + movie.name())
+                .forEach(System.out::println);
+
+        repository.getByActorName("Christian Bale").stream()
+                .map(movie -> "Название : " + movie.name())
+                .forEach(System.out::println);
+    }
+
+    private static ObjectMapper mapper = new ObjectMapper();
+
+    public static MovieRecord wolfFromWallStreet;
+    public static MovieRecord moneyball;
+    public static MovieRecord vice;
+    public static MovieRecord theBigShort;
+    public static MovieRecord bladeRunner2049;
+    public static MovieRecord bladeRunner;
+    public static List<MovieRecord> movies;
+
 
     private static final String movie1String = """
                 {
@@ -343,14 +362,6 @@ public class Main {
             }
             """;
 
-    public static MovieRecord wolfFromWallStreet;
-    public static MovieRecord moneyball;
-    public static MovieRecord vice;
-    public static MovieRecord theBigShort;
-    public static MovieRecord bladeRunner2049;
-    public static MovieRecord bladeRunner;
-    public static List<MovieRecord> movies;
-
     static {
         try {
             wolfFromWallStreet = mapper.readValue(movie1String, MovieRecord.class);
@@ -363,24 +374,5 @@ public class Main {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-    }
-
-
-    public static void main(String[] args) {
-        var repository = new MovieRepository();
-
-        movies.forEach(movie -> Query.insert(movie).execute());
-
-        repository.getMovieByYear(2018).stream()
-                .map(movie -> "Название : " + movie.name())
-                .forEach(System.out::println);
-
-        repository.getMovieByActorName("Christian Bale").stream()
-                .map(movie -> "Название : " + movie.name())
-                .forEach(System.out::println);
-
-        repository.getMovieByYearAndActorName(2018, "Christian Bale").stream()
-                .map(movie -> "Hазвание : " + movie.name())
-                .forEach(System.out::println);
     }
 }

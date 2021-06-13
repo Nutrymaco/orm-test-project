@@ -6,5 +6,5 @@ import static com.nutrymaco.project.fields._Organisation.ORGANISATION;
 import static com.nutrymaco.project.fields._Organisation.ORGANISATION_ENTITY;
 
 @Repository
-public class OrganisationRepository {
+public interface OrganisationRepository {
 }

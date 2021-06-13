@@ -6,5 +6,5 @@ import static com.nutrymaco.project.fields._City.CITY;
 import static com.nutrymaco.project.fields._City.CITY_ENTITY;
 
 @Repository
-public class CityRepository {
+public interface CityRepository {
 }

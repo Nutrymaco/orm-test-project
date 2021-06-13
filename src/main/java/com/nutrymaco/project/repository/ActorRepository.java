@@ -6,5 +6,5 @@ import static com.nutrymaco.project.fields._Actor.ACTOR;
 import static com.nutrymaco.project.fields._Actor.ACTOR_ENTITY;
 
 @Repository
-public class ActorRepository {
+public interface ActorRepository {
 }

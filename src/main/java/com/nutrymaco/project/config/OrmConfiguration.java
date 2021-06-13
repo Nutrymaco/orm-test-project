@@ -16,6 +16,7 @@ public class OrmConfiguration implements Configuration {
 
     @Override
     public boolean enableSynchronisation() {
-        return true;
+        return false;
     }
+
 }
